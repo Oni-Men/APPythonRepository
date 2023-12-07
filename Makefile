@@ -20,10 +20,10 @@ all:
 
 clean:
 	# *.pycファイルをすべて消し去る
-	@for each in $(PYCS) ; do rm -rf $$(each) ; done
+	@for each in $(PYCS) ; do rm -rf $${each} ; done
 
 	# __pycache__ディレクトリをすべて消し去る	
-	@for each in $(PYCACHE) ; do rm -rf $$(each) ; done
+	@for each in $(PYCACHE) ; do rm -rf $${each} ; done
 
 	# pylintの結果ファイルが存在したら削除する
 	@if [ -e $(LINTRES) ] ; then rm -f $(LINTRES); fi
@@ -49,8 +49,19 @@ pylint:
 		(cd $(WORKDIR); sudo -H pip install pylint); \
 	fi
 
+pip:
+	@if [ -z `which pip`]; \
+	then \
+		(cd $(WORKDIR); curl -O https://bootstrap.pypa.io/get-pip.py); \
+		(cd $(WORKDIR); sudo -H python get-pip.py); \
+		(cd $(WORKDIR); rm get-pip.py); \
+	else
+		(cd $(WORKDIR); sudo -H pip install -U pip); \
+	fi
+
 lint: pylint clean
 	@if [ ! -e $(LINTRC) ] ; then $(PYLINT) --generate-rcfile > $(LINTRC) ; fi
 	$(PYLINT) --rcfile=$(LINTRC) --reports=n `find . -name "*.py"` > $(LINTRES) ; less $(LINTRES)
 
-	
+prepare: pip pylint
+
