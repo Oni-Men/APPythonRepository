@@ -50,12 +50,12 @@ pylint:
 	fi
 
 pip:
-	@if [ -z `which pip`]; \
+	@if [ -z `which pip` ]; \
 	then \
 		(cd $(WORKDIR); curl -O https://bootstrap.pypa.io/get-pip.py); \
 		(cd $(WORKDIR); sudo -H python get-pip.py); \
 		(cd $(WORKDIR); rm get-pip.py); \
-	else
+	else \
 		(cd $(WORKDIR); sudo -H pip install -U pip); \
 	fi
 
