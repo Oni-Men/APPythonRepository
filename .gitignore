@@ -1,0 +1,5 @@
+*.pyc
+/__pycache__/
+
+# リントの結果ファイルを無視
+pylintresult.txt
