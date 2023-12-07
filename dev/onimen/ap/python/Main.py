@@ -28,11 +28,11 @@ def for_else_test1(stop_at):
 
 	return "Don't finished..."
 
-	
+
 def for_else_test2(stop_at):
 	"""
 	stop_atでループを終了する
-	
+
 	>>> for_else_test2(5)
 	Don't finished...
 	>>> for_else_test2(15)
@@ -43,7 +43,7 @@ def for_else_test2(stop_at):
 			break
 	else:
 		return "Finished!"
-	
+
 	return "Don't finished..."
 
 def main():
@@ -53,25 +53,24 @@ def main():
 	print("--- forとフラグを使った場合 ---")
 	a_result1 = for_else_test1(5)
 	a_result2 = for_else_test1(15)
-	
+
 	print(a_result1)
 	print(a_result2)
 
 	print()
-	
+
 	print("--- for-elseを使った場合 ---")
 	a_result1 = for_else_test2(5)
 	a_result2 = for_else_test2(15)
 
 	print(a_result1)
 	print(a_result2)
-	
+
 	return 0
 
 if __name__ == '__main__':
 	import doctest
 	import sys
-	
+
 	doctest.testmod()
 	sys.exit(main())
-
